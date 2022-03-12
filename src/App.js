@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { Box } from "@mui/material";
+import { BrowserRouter } from "react-router-dom";
+import BackToTop from "./BackToTop";
+import BgColor from "./components/BgColor/BgColor";
+import Navbar from "./components/Navbar/Navbar";
+
+import AuthContextProvider from "./contexts/AuthContext";
+import ProductContextProvider from "./contexts/ProductContext";
+import MainRoutes from "./MainRoutes";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box>
+      <BrowserRouter>
+        <AuthContextProvider>
+          <ProductContextProvider>
+            <BackToTop />
+
+            <Navbar />
+          </ProductContextProvider>
+        </AuthContextProvider>
+      </BrowserRouter>
+    </Box>
   );
 }
 

@@ -1,0 +1,36 @@
+.pagination {
+  display: flex;
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+  height: 50px;
+  list-style-type: none;
+  color: rgb(250, 143, 177);
+  padding-bottom: 40px;
+  padding-top: 40px;
+}
+
+.pagination a {
+  padding: 10px;
+  margin: 5px;
+  text-decoration: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination a:hover {
+  background-color: rgba(255, 184, 206);
+  color: white;
+}
+
+.activeBtn a {
+  background-color: rgba(255, 184, 206);
+  color: white;
+}
+
+@media only screen and (max-width: 900px) {
+  .HomePage_center {
+    display: none;
+  }
+}

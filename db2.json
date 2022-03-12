@@ -1,0 +1,55 @@
+{
+  "chapter": [
+    {
+      "chapter": "ыоаыфова",
+      "id": 1
+    },
+    {
+      "chapter": "sadfas",
+      "selectedFiles": "",
+      "id": 2
+    },
+    {
+      "chapter": "sadfas",
+      "selectedFiles": "",
+      "id": 3
+    },
+    {
+      "chapter": "sdfa",
+      "selectedFiles": [],
+      "id": 4
+    },
+    {
+      "chapter": "",
+      "selectedFiles": [
+        "blob:http://localhost:3000/3019ceac-3699-4c7d-8163-e5552fa3a2e0"
+      ],
+      "id": 5
+    },
+    {
+      "chapter": "",
+      "selectedFiles": [],
+      "id": 6
+    },
+    {
+      "chapter": "",
+      "selectedFiles": [],
+      "id": 7
+    },
+    {
+      "chapter": "",
+      "selectedFiles": [],
+      "id": 8
+    },
+    {
+      "chapter": "",
+      "selectedFiles": [],
+      "id": 9
+    },
+    {
+      "chapter": "",
+      "selectedFiles": [],
+      "id": 10
+    }
+  ]
+}
