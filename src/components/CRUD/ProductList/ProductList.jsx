@@ -1,4 +1,4 @@
-import { Divider, Grid, TextField } from "@mui/material";
+import { Divider, Grid, Paper, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
 import { useSearchParams } from "react-router-dom";
@@ -8,7 +8,9 @@ import AddProduct from "../AddProduct/AddProduct";
 import MediaCard from "../AddProduct/AddProduct";
 import ProductCard from "../ProductCard/ProductCard";
 import ProductCard2 from "../ProductCard2/ProductCard2";
+import Upload from "../ProductDetails/Upload";
 import List1section from "./List1section/List1section";
+import List2section from "./List2section/List2section";
 // import Slider1 from "../../Slider/Slider1";
 
 const ProductList = ({ products }) => {
@@ -20,7 +22,6 @@ const ProductList = ({ products }) => {
         style={{
           minHeight: "600px",
           paddingBottom: "100px",
-          overflowX: "hidden",
           backgroundImage: `url(${background})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
@@ -78,3 +79,20 @@ const ProductList = ({ products }) => {
 };
 
 export default ProductList;
+
+// {
+//   products ? (
+//     products.map((item) => (
+//       <Grid item>
+//         <div>{item.name}</div>
+//         <img src={item.selectedFiles}></img>
+//         <ProductCard2 item={item} key={item} />
+//         <ProductCard item={item} key={item} />
+//       </Grid>
+//     ))
+//   ) : (
+//     <>
+//       <h2>..Loading</h2>
+//     </>
+//   );
+// }

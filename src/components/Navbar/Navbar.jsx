@@ -46,6 +46,7 @@ import Sidebar1 from "../sidebar1/Sidebar1";
 import HomeIcon from "@mui/icons-material/Home";
 import CallIcon from "@mui/icons-material/Call";
 import ReadMoreIcon from "@mui/icons-material/ReadMore";
+import Footer from "../Footer/Footer";
 
 //!  dont touch
 const drawerWidth = 240;
@@ -323,6 +324,7 @@ export default function MiniDrawer() {
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Sidebar1 />
         <MainRoutes />
+        <Footer />
       </Box>
     </Box>
   );

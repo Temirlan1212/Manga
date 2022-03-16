@@ -13,8 +13,11 @@ import ContactUs from "./pages/ContactUs";
 import NotFoundPage from "./pages/NotFoundPage";
 import AdminPage from "./pages/AdminPage";
 import EditProductPage from "./pages/EditProductPage";
-import Read from "./components/Read/Read";
 import ChapterPage from "./pages/ChapterPage";
+import SighIn from "./Chat/SighIn";
+import Chat from "./Chat/Chat";
+import ChatPage from "./pages/ChatPage";
+import FavoritiesPage from "./pages/FavoritiesPage";
 
 const MainRoutes = () => {
   const { user } = useAuth();
@@ -55,11 +58,6 @@ const MainRoutes = () => {
       id: 7,
     },
     {
-      link: "/read",
-      element: <Read />,
-      id: 8,
-    },
-    {
       link: "/chapter/:id",
       element: <ChapterPage />,
       id: 9,
@@ -68,6 +66,21 @@ const MainRoutes = () => {
       link: "*",
       element: <NotFoundPage />,
       id: 10,
+    },
+    {
+      link: "/signin",
+      element: <SighIn />,
+      id: 11,
+    },
+    {
+      link: "/favorite",
+      element: <FavoritiesPage />,
+      id: 12,
+    },
+    {
+      link: "/chat",
+      element: <ChatPage />,
+      id: 13,
     },
   ];
 

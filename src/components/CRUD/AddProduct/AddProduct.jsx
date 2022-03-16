@@ -1,10 +1,11 @@
+import { Upload } from "@mui/icons-material";
 import { Box, Button, Grid, Stack, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useProducts } from "../../../contexts/ProductContext";
 
 const AddProduct = () => {
-  const { addProduct } = useProducts();
+  const { addProduct, chapter } = useProducts();
 
   const navigate = useNavigate();
 
@@ -16,6 +17,8 @@ const AddProduct = () => {
     picture2: "",
     type: "",
     mainType: "",
+    comments: [],
+    like: 0,
   });
 
   const handleInp = (e) => {

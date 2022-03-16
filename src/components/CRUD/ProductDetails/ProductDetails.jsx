@@ -1,86 +1,148 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useProducts } from "../../../contexts/ProductContext";
+
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-// import CardContent from "@mui/material/CardContent";
+
 import CardMedia from "@mui/material/CardMedia";
 import { Button, TextField } from "@mui/material";
 import { useAuth } from "../../../contexts/AuthContext";
-import AddChapter from "./AdminChapter/AddChapter";
-import ChapterNavigate from "./ChapterNavigate/ChapterNavigate";
-import Upload from "./ChapterNavigate/Upload";
-// import IconButton from "@mui/material/IconButton";
-// import Typography from "@mui/material/Typography";
-// import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
-// import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-// import SkipNextIcon from "@mui/icons-material/SkipNext";
-// import CreditCard1 from "../../CreditCard/Cards";
-// import Index2 from "../../CreditCard/Index2";
-// import Cards from "../../CreditCard/Cards";
+import AddChapter from "./AddChapter";
+
+import { useProducts } from "../../../contexts/ProductContext";
+import Upload from "./Upload";
+
+import "./ProductDetails.css";
+
+import Like from "../../LIke/LIke";
+import Slider2 from "../../Slider2/Slider2";
 
 const ProductDetails = () => {
+  const [com, setCom] = useState({});
+  const { getProductDetails, productDetails, saveEditedProduct, addComment } =
+    useProducts();
+
+  const { user } = useAuth();
+
+  // const handleInput = (e) => {
+  //   setCom(e.target.value);
+  // };
+  // const theme = useTheme();
+
+  const handleInput = (e) => {
+    // if (productDetails) {
+    let d = new Date(Date.now());
+    d.toString();
+    setCom({
+      email: user.email,
+      comment: e.target.value,
+      date: new Date().toLocaleString(),
+    });
+    // console.log(com);
+    // }
+  };
   const theme = useTheme();
-  const {
-    addProduct,
-    addChapter,
-    chapter,
-    products,
-    deleteChapter,
-    addProductToCart,
-    checkProductInCart,
-  } = useProducts();
 
   const {
     user: { email },
   } = useAuth();
 
   const { id } = useParams();
-  const { getProductDetails, productDetails } = useProducts();
+
+  const [productComment, setProductComment] = React.useState({
+    comments: "",
+  });
+
+  useEffect(() => {
+    getProductDetails(id);
+  }, []);
 
   useEffect(() => {
     getProductDetails(id);
   }, [id]);
 
+  useEffect(() => {
+    setProductComment(productDetails);
+  }, [productDetails]);
+
+  console.log(productDetails, "from Details");
+
+  //   productDetails.map((com) => {
+  //     console.log(com, "comment@!!");
+  //   });
+  // });
+
+  ///!
+
+  const sendComment = async (e, id, productos) => {
+    let newComment = [...productos.comments];
+    newComment.push(com);
+    let productWithComment = {
+      ...productos,
+
+      comments: newComment,
+    };
+    const data = await saveEditedProduct(productWithComment);
+  };
+
+  console.log(productDetails.comments);
+
+  productDetails && productDetails.comments
+    ? productDetails.comments.map((com) => {
+        console.log(com, "comment@!!");
+      })
+    : console.log("did not work");
+
   return (
-    <div
-      style={{
-        display: "flex",
-        flexWrap: "wrap-reverse",
-        justifyContent: "space-around",
-        padding: "50px",
-        justifyContent: "center",
-        backgroundColor: "#E2EAEC",
-      }}
-    >
-      <AddChapter />
-      <Upload />
+    <div>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap-reverse",
+          justifyContent: "space-around",
+          padding: "50px",
+          justifyContent: "center",
+          backgroundColor: "#E2EAEC",
+          marginTop: "10px",
+        }}
+      >
+        {/* <AddChapter />
+      <Upload /> */}
 
-      <ChapterNavigate />
-
-      {/* 
-      <Card sx={{ margin: "auto 0", maxHeight: "500px" }}>
-        <CardMedia
-          component="img"
-          sx={{ width: 400, border: "1px solid #616161", height: "500px" }}
-          image={productDetails.picture}
-          alt="Live from space album cover"
+        <TextField
+          fullWidth
+          id="outlined-basic"
+          label="comments"
+          variant="outlined"
+          name="comments"
+          onChange={(e) => handleInput(e)}
         />
 
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            margin: 10,
-          }}
-        ></Box>
-      </Card> */}
-      {/* <Cards />
-      <Index2 /> */}
+        <Button
+          id="button"
+          variant="outlined"
+          size="large"
+          fullWidth
+          onClick={(e) => sendComment(e, productComment.id, productComment)}
+        >
+          add comment
+        </Button>
+      </div>
+      <Slider2 />
+
+      {productDetails && productDetails.comments ? (
+        productDetails.comments.map((com) => (
+          <div>
+            <p>{com.comment}</p>
+          </div>
+        ))
+      ) : (
+        <p>Comments are loading</p>
+      )}
+
+      {/* <Like /> */}
     </div>
   );
 };

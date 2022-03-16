@@ -9,7 +9,7 @@ const ProductsPage = () => {
   const { products, getProducts } = useProducts();
   const [page, setPage] = useState(0);
 
-  const productPerPage = 8;
+  const productPerPage = 2;
 
   const location = useLocation();
 

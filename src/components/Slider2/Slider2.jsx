@@ -3,18 +3,17 @@ import { Box } from "@mui/system";
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import Carousel from "react-elastic-carousel";
-import { ADMIN } from "../../../helpers/consts";
+import { ADMIN } from "../../helpers/consts";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../../contexts/AuthContext";
-import { useProducts } from "../../../contexts/ProductContext";
-import Item from "./Item";
-import "./Slider.css";
+import { useAuth } from "../../contexts/AuthContext";
+import { useProducts } from "../../contexts/ProductContext";
+import Item from "./Item2";
+import "./Slider2.css";
 
 const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const itemsToShow = 5;
 const getMid = () => Math.ceil(itemsToShow / 2) - 1; // 0 based
-function Slider1() {
-  const { deleteProduct, addProductToCart, checkProductInCart } = useProducts();
+function Slider2() {
   const {
     user: { email },
   } = useAuth();
@@ -22,11 +21,21 @@ function Slider1() {
   const navigate = useNavigate();
 
   const [midItemIndex, setMidItemIndex] = useState(getMid);
-  const { products, handleEdit, setDef } = useProducts();
+  const { products, handleEdit, setDef, productDetails } = useProducts();
+
+  const [prod, setProd] = useState(products);
 
   const onChange = (_, next) => {
     const mid = getMid();
     setMidItemIndex(mid + next.index);
+  };
+
+  const handleRec = (id, type) => {
+    let newProduct = products.filter((item) => {
+      return item.id !== id;
+    });
+
+    setProd(newProduct);
   };
 
   return (
@@ -37,12 +46,19 @@ function Slider1() {
         margin: "0 auto",
       }}
     >
+      <p>Show the reccomadation</p>
+      <Button
+        onClick={() => handleRec(productDetails.id, productDetails.mainType)}
+      >
+        fitler
+      </Button>
+
       <Carousel
         itemsToShow={itemsToShow}
         onNextStart={onChange}
         onPrevStart={onChange}
       >
-        {products.map((item, index) => (
+        {prod.map((item, index) => (
           <Item
             onClick={() => handleEdit(index)}
             className="Slider_Item"
@@ -56,7 +72,7 @@ function Slider1() {
             key={item}
           >
             <img
-              src={item.picture2}
+              src={item.picture}
               style={{
                 width: "210px",
                 height: "200px",
@@ -98,4 +114,4 @@ function Slider1() {
 
 const rootElement = document.getElementById("root");
 
-export default Slider1;
+export default Slider2;

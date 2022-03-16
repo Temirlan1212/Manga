@@ -14,13 +14,33 @@ const List1section = () => {
     <>
       <div className="theMain_div">
         {" "}
-        <p>Take a rest</p>{" "}
+        <p className="theMain_div-p">Take a rest</p>{" "}
       </div>
 
+      <div
+        style={{
+          border: "1px solid rgba(169, 54, 0)",
+          margin: "40px 0 20px 0",
+          maxWidth: "1000px",
+          height: "2px",
+          background: "red",
+        }}
+      ></div>
+
       <div className="main_dv">
-        <a href="#category" onClick={() => setBackground(`${back1}`)}>
+        <a href="#category">
           <div
-            className="dv"
+            className="dv2"
+            id="manhua"
+            onClick={(e) => fetchByParams("mainType", e.target.id)}
+          >
+            <p className="main_div-p">manhua</p>
+          </div>
+        </a>
+
+        <a href="#category" onClick={() => setBackground("black")}>
+          <div
+            className="dv1"
             id="manga"
             onClick={(e) => fetchByParams("mainType", e.target.id)}
           >
@@ -30,17 +50,7 @@ const List1section = () => {
 
         <a href="#category">
           <div
-            className="dv"
-            id="manhua"
-            onClick={(e) => fetchByParams("mainType", e.target.id)}
-          >
-            <p className="main_div-p">manhua</p>
-          </div>
-        </a>
-
-        <a href="#category">
-          <div
-            className="dv"
+            className="dv3"
             id="comics"
             onClick={(e) => fetchByParams("mainType", e.target.id)}
           >
@@ -50,7 +60,7 @@ const List1section = () => {
 
         <a href="#category">
           <div
-            className="dv"
+            className="dv4"
             id="manhwa"
             onClick={(e) => fetchByParams("mainType", e.target.id)}
           >

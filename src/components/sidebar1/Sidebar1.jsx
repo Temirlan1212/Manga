@@ -17,6 +17,8 @@ import { useAuth } from "../../contexts/AuthContext";
 import { ADMIN } from "../../helpers/consts";
 import SearchIcon from "@mui/icons-material/Search";
 
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+
 import { useEffect } from "react";
 import classes from "../Navbar/Navbar.module.css";
 
@@ -45,7 +47,7 @@ const settings = ["Profile", "Account", "Dashboard"];
 const manga = ["Manga", "Manhwa", "Comics"];
 
 const Sidebar1 = () => {
-  const { getProducts } = useProducts();
+  const { getProducts, cart } = useProducts();
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -114,30 +116,30 @@ const Sidebar1 = () => {
 
   return (
     <ScrollToColor01>
-      <AppBar position="fixed" sx={{ maxWidth: "1400px", margin: "0 auto" }}>
+      <AppBar position="standard" className="sidebar_main">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             {/* <Avatar
               alt="logo"
-              src="https://i2.wp.com/manga-figurines.com/wp-content/uploads/2020/11/logo_figurine-min-1.png?fit=400%2C302&ssl=1"
+              src="https://readmashle.com/wp-content/uploads/2021/04/LOGO-MASHLE-1-1.png"
               sx={{
                 width: "200px",
                 height: "100px",
                 marginTop: "-20px",
               }}
             /> */}
-
+            <div
+              style={{
+                color: "white",
+                fontWeight: "900",
+                fontSize: "30px",
+                marginBottom: "5px",
+              }}
+            >
+              {" "}
+              aniMode
+            </div>
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleOpenNavMenu}
-                color="inherit"
-              >
-                <MenuIcon />
-              </IconButton>
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorElNav}
@@ -171,7 +173,6 @@ const Sidebar1 = () => {
               component="div"
               sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
             ></Typography>
-
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               {pages.map((page) => (
                 <Link to={page.link}>
@@ -190,17 +191,18 @@ const Sidebar1 = () => {
                   </Button>
                 </Link>
               ))}
-              <Button
+              {/* <Button
                 onClick={handleOpenMangaMenu}
                 sx={{
                   fontFamily: "Space Grotesk",
                   fontSize: "17px",
-                  color: "gray",
+                  color: "white",
+                  fontWeight: "900",
                 }}
               >
                 catalog
                 <ExpandMoreIcon />
-              </Button>
+              </Button> */}
 
               {/* filter start */}
               <Menu
@@ -309,9 +311,54 @@ const Sidebar1 = () => {
                 onChange={(e) => setSearch(e.target.value)}
               />
               <Button type="submit">
-                <SearchIcon />
+                <SearchIcon sx={{ color: "white" }} />
               </Button>
             </form>
+
+            {/* ADMIN PANEL */}
+            {email == ADMIN ? (
+              <Link to="/admin">
+                <Button
+                  sx={{
+                    color: "white",
+                    display: "block",
+                    fontSize: 15,
+                    fontFamily: "Monospace",
+                  }}
+                >
+                  ADMIN PANEL
+                </Button>
+              </Link>
+            ) : (
+              <>
+                <Link to="/cart">
+                  <Button>
+                    <IconButton sx={{ color: "white" }}>
+                      <Badge
+                        color="secondary"
+                        badgeContent={cart?.products ? cart.products.length : 0}
+                      >
+                        <BookmarkBorderIcon />
+                      </Badge>
+                    </IconButton>
+                  </Button>
+                </Link>
+
+                {/* <Link to="/favorite">
+                  <Button>
+                    <IconButton sx={{ color: "white" }}>
+                      <Badge
+                        color="secondary"
+                        badgeContent={cart?.products ? cart.products.length : 0}
+                      >
+                        <BookmarkBorderIcon />
+                      </Badge>
+                    </IconButton>
+                  </Button>
+                </Link> */}
+              </>
+            )}
+            {/* ADMIN PANEL */}
 
             <BgColor />
             <Box sx={{ flexGrow: 0 }}>
@@ -320,7 +367,7 @@ const Sidebar1 = () => {
                   <IconButton onClick={handleOpenUserMenu} sx={{}}>
                     <Avatar
                       alt="Remy Sharp"
-                      src="/static/images/avatar/2.jpg"
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvjQCBx7sceK8XE54kOQsJ6jxfy4j4TligSg&usqp=CAU"
                     />
                   </IconButton>
                 </Box>
@@ -380,35 +427,6 @@ const Sidebar1 = () => {
                 ))}
 
                 <Divider />
-                {/* ADMIN PANEL */}
-                {email == ADMIN ? (
-                  <Link to="/admin">
-                    <Button
-                      sx={{
-                        color: "#ff9100",
-                        display: "block",
-                        fontSize: 15,
-                        fontFamily: "Monospace",
-                      }}
-                    >
-                      ADMIN PANEL
-                    </Button>
-                  </Link>
-                ) : (
-                  <Link to="/cart">
-                    {/* <Button>
-                    <IconButton sx={{ color: "white" }}>
-                      <Badge
-                        color="secondary"
-                        badgeContent={cart?.products ? cart.products.length : 0}
-                      >
-                        <ShoppingCartIcon />
-                      </Badge>
-                    </IconButton>
-                  </Button> */}
-                  </Link>
-                )}
-                {/* ADMIN PANEL */}
               </Menu>
             </Box>
           </Toolbar>

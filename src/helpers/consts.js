@@ -1,4 +1,4 @@
-export const ADMIN = "ltemirlan2003@gmail.com";
+export const ADMIN = "ltemirlan2000@gmail.com";
 
 export const ACTIONS = {
   GET_PRODUCTS: "GET_PRODUCTS",

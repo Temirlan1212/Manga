@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import React from "react";
 import { useState } from "react";
 import Select from "react-select";
@@ -7,10 +8,6 @@ const BgColor = () => {
   let [bgColor, setBgColor] = useState("none");
   let colors = [
     { value: 1, label: "black" },
-    { value: 1, label: "pink" },
-    { value: 1, label: "rgba(255, 164, 139)" },
-    { value: 1, label: "aquamarine" },
-    { value: 1, label: "purple" },
     { value: 1, label: "none" },
   ];
 
@@ -20,10 +17,15 @@ const BgColor = () => {
   };
 
   return (
-    <div style={{ zIndex: "99" }}>
+    <Box
+      sx={{
+        zIndex: "99",
+        display: { xs: "none", md: "flex", lg: "flex", lx: "flex" },
+      }}
+    >
       <style>{"body {background-color:" + bgColor + ";}"}</style>
       <Select options={colors} onChange={bgHandler} className="select" />
-    </div>
+    </Box>
   );
 };
 

@@ -14,7 +14,13 @@ import { IconButton } from "@mui/material";
 import classes from "../ProductCard/ProductCard.module.css";
 
 export default function MediaCard({ item }) {
-  const { deleteProduct, addProductToCart, checkProductInCart } = useProducts();
+  const {
+    deleteProduct,
+    addProductToCart,
+    checkProductInCart,
+    changeProductCount,
+    cart,
+  } = useProducts();
   const {
     user: { email },
   } = useAuth();
@@ -72,12 +78,12 @@ export default function MediaCard({ item }) {
             </Button>
           </>
         ) : (
-          ""
-          // <IconButton onClick={() => addProductToCart(item)}>
-          //   <ShoppingCartIcon
-          //     color={checkProductInCart(item.id) ? "secondary" : ""}
-          //   />
-          // </IconButton>
+          <IconButton onClick={() => addProductToCart(item)}>
+            <ShoppingCartIcon
+              sx={{ color: "black" }}
+              color={checkProductInCart(item.id) ? "secondary" : ""}
+            />
+          </IconButton>
         )}
       </CardActions>
     </Card>

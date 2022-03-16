@@ -2,9 +2,23 @@
   background-image: url("../../../../assets/comicsback.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
-  width: 100vw;
+  height: 50vh;
+  width: 94vw;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.theMain_div-p {
+  font-size: 100px;
+  font-weight: 900;
+  transition: all 0.5s ease;
+}
+
+.theMain_div-p:hover {
+  font-size: 130px;
+  font-weight: 900;
+  color: rgb(119, 26, 26);
 }
 
 .main_dv {
@@ -15,28 +29,118 @@
   max-width: 1200px;
   justify-content: space-evenly;
 }
-
-.dv {
+/* images start */
+.dv1 {
   border: 2px solid red;
   width: 200px;
   height: 200px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px 0px red;
-  background-color: rgba(255, 0, 0, 0.1);
+  background-image: url("https://images.unsplash.com/photo-1569272955731-e2bd853aed90?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
+  background-repeat: no-repeat;
+  background-position: center;
 
   transition: all 0.5s ease;
 }
 
-.dv:hover {
+.dv1:hover {
   border: 2px solid red;
   width: 210px;
-  height: 310px;
+  height: 220px;
   border-radius: 10px;
   box-shadow: 0px 0px 20px 0px red;
   background-image: url("https://images.unsplash.com/photo-1569272955731-e2bd853aed90?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+}
+
+.dv2 {
+  border: 2px solid red;
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px red;
+  background-image: url("https://images.unsplash.com/photo-1559864845-2916d99fba10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=386&q=80");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  transition: all 0.5s ease;
+}
+
+.dv2:hover {
+  border: 2px solid red;
+  width: 210px;
+  height: 220px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px 0px red;
+  background-image: url("https://images.unsplash.com/photo-1569272955731-e2bd853aed90?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.dv3 {
+  border: 2px solid red;
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px red;
+  background-image: url("https://images.unsplash.com/photo-1634828221818-503587f33d02?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  transition: all 0.5s ease;
+}
+
+.dv3:hover {
+  border: 2px solid red;
+  width: 210px;
+  height: 220px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px 0px red;
+  background-image: url("https://images.unsplash.com/photo-1569272955731-e2bd853aed90?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.dv4 {
+  border: 2px solid red;
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px red;
+  background-image: url("https://images.unsplash.com/photo-1559864845-42b13e1b0ae2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  transition: all 0.5s ease;
+}
+
+.dv4:hover {
+  border: 2px solid red;
+  width: 210px;
+  height: 220px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px 0px red;
+  background-image: url("https://images.unsplash.com/photo-1569272955731-e2bd853aed90?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+/* images end */
+
+.main_div-p {
+  color: rgb(255, 255, 255);
+  font-size: 30px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media screen and (max-width: 1000px) {

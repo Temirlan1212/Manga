@@ -8,7 +8,7 @@ a {
   color: rgb(158, 218, 121);
 }
 
-.card {
+.card-product {
   position: relative;
   overflow: hidden;
   width: 300px;
@@ -20,7 +20,7 @@ a {
   border-radius: 10px;
 }
 
-.card .img1 {
+.card-product .img1 {
   position: absolute;
   top: 0;
   left: 0;
@@ -29,19 +29,19 @@ a {
   transition: all 0.5s ease-in-out;
 }
 
-.card .img2 {
+.card-product .img2 {
   position: absolute;
   bottom: 0;
   left: 0;
   height: 40%;
   width: 100%;
-  background-image: url(http://cima4u.tv/wp-content/uploads/1-71.jpg);
+
   background-size: 310px 440px;
   background-position: left bottom;
   transition: all 0.5s ease-in-out;
 }
 
-.card .title {
+.card-product .title {
   height: 22%;
   width: 100%;
   font-size: 20px;
@@ -56,7 +56,7 @@ a {
   left: 0;
 }
 
-.card .text {
+.card-product .text {
   position: absolute;
   bottom: 80px;
   height: 120px;
@@ -71,7 +71,7 @@ a {
   background-color: #ffffff;
 }
 
-.card .catagory {
+.card-product .catagory {
   position: absolute;
   left: 10px;
   top: 140px;
@@ -84,9 +84,10 @@ a {
   border-radius: 5px;
   transform: translate(-160px, 0);
   transition: all 0.5s ease;
+  cursor: pointer;
 }
 
-.card .views {
+.card-product .views {
   position: absolute;
   left: 10px;
   top: 175px;
@@ -101,23 +102,24 @@ a {
   transition: all 0.5s ease 0.15s;
 }
 
-.card:hover .img1 {
+.card-product:hover .img1 {
   transform: rotate(10deg) scale(1.3) translate(20px, 0);
   transform-origin: 300px 300px;
   opacity: 0.5;
 }
 
-.card:hover .img2 {
+.card-product:hover .img2 {
   transform: rotate(90deg) translate(0px, 150px);
   transform-origin: -20px 200px;
 }
 
-.card:hover .text {
+.card-product:hover .text {
   opacity: 100;
   transform: translate(0);
 }
 
-.card:hover .views,
-.card:hover .catagory {
+.card-product:hover .views,
+.card-product:hover .catagory {
   transform: translate(0);
+  cursor: pointer;
 }

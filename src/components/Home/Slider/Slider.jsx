@@ -64,15 +64,17 @@ function Slider1() {
                 margin: "0 auto",
               }}
             />
+            <center>
+              <Button
+                onClick={() => setDef(true)}
+                sx={{ fontWeight: 900, color: "#616161" }}
+              >
+                read
+              </Button>
+            </center>
             {email === ADMIN ? (
               <center>
                 {" "}
-                <Button
-                  onClick={() => setDef(true)}
-                  sx={{ fontWeight: 900, color: "#616161" }}
-                >
-                  read
-                </Button>
                 <Button
                   size="small"
                   onClick={() => navigate(`/edit/${item.id}`)}

@@ -8,6 +8,7 @@ import Section0 from "./Section0/Section0";
 import Slider1 from "../Home/Slider/Slider";
 import { Divider } from "@mui/material";
 import pic1 from "../../assets/konoha1.jpg";
+import List2section from "../CRUD/ProductList/List2section/List2section";
 
 const Home = () => {
   return (

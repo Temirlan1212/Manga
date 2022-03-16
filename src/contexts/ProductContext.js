@@ -6,11 +6,11 @@ import {
   JSON_API_PRODUCTS,
   JSON_API_PRODUCTS2,
 } from "../helpers/consts";
-// import {
-//   calcSubPrice,
-//   calcTotalPrice,
-//   getCountProductsInCart,
-// } from "../helpers/functions";
+import {
+  calcSubPrice,
+  calcTotalPrice,
+  getCountProductsInCart,
+} from "../helpers/functions";
 
 export const productContext = createContext();
 
@@ -23,8 +23,8 @@ const INIT_STATE = {
   products: [],
   productDetails: {},
 
-  //   cart: JSON.parse(localStorage.getItem("cart")),
-  //   cartLength: getCountProductsInCart,
+  cart: JSON.parse(localStorage.getItem("cart")),
+  cartLength: getCountProductsInCart,
 };
 
 const reducer = (state = INIT_STATE, action) => {
@@ -64,6 +64,7 @@ const ProductContextProvider = ({ children }) => {
     let { data } = await axios(
       `${JSON_API_PRODUCTS2}${window.location.search}`
     );
+    console.log(data);
 
     dispatch({
       type: ACTIONS.GET_PRODUCT_CHAPTER,
@@ -126,6 +127,13 @@ const ProductContextProvider = ({ children }) => {
 
     getProducts();
   };
+
+  const addComment = async (newProduct) => {
+    await axios.post(`${JSON_API_PRODUCTS}/${newProduct.id}`, newProduct);
+
+    getProducts();
+  };
+
   // ! ===================== crud end========================
 
   // Filter
@@ -142,112 +150,113 @@ const ProductContextProvider = ({ children }) => {
 
   // ////////////////////////////////////! cart start
 
-  //   const getCart = () => {
-  //     let cart = JSON.parse(localStorage.getItem("cart"));
+  const getCart = () => {
+    let cart = JSON.parse(localStorage.getItem("cart"));
 
-  //     if (!cart) {
-  //       localStorage.setItem(
-  //         "cart",
-  //         JSON.stringify({
-  //           products: [],
-  //           totalPrice: 0,
-  //         })
-  //       );
-  //       cart = {
-  //         products: [],
-  //         totalPrice: 0,
-  //       };
-  //     }
-  //     dispatch({
-  //       type: ACTIONS.GET_CART,
-  //       payload: cart,
-  //     });
-  //   };
+    if (!cart) {
+      localStorage.setItem(
+        "cart",
+        JSON.stringify({
+          products: [],
+          totalPrice: 0,
+        })
+      );
+      cart = {
+        products: [],
+        totalPrice: 0,
+      };
+    }
+    dispatch({
+      type: ACTIONS.GET_CART,
+      payload: cart,
+    });
+  };
 
-  //   const addProductToCart = (product) => {
-  //     let cart = JSON.parse(localStorage.getItem("cart"));
+  const addProductToCart = (product) => {
+    let cart = JSON.parse(localStorage.getItem("cart"));
 
-  //     if (!cart) {
-  //       cart = {
-  //         products: [],
-  //         totalPrice: 0,
-  //       };
-  //     }
+    if (!cart) {
+      cart = {
+        products: [],
+        totalPrice: 0,
+      };
+    }
 
-  //     let newProduct = {
-  //       item: product,
-  //       count: 1,
-  //       subPrice: +product.price,
-  //     };
+    let newProduct = {
+      item: product,
+      count: 1,
+      subPrice: +product.price,
+    };
 
-  //     let productToFind = cart.products.filter(
-  //       (item) => item.item.id === product.id
-  //     );
+    let productToFind = cart.products.filter(
+      (item) => item.item.id === product.id
+    );
 
-  //     if (productToFind.length === 0) {
-  //       cart.products.push(newProduct);
-  //     } else {
-  //       cart.products = cart.filter((item) => item.ite.id !== product.id);
-  //     }
+    if (productToFind.length === 0) {
+      cart.products.push(newProduct);
+    } else {
+      cart.products = cart.filter((item) => item.ite.id !== product.id);
+    }
 
-  //     cart.totalPrice = calcTotalPrice(cart.products);
+    cart.totalPrice = calcTotalPrice(cart.products);
 
-  //     localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem("cart", JSON.stringify(cart));
 
-  //     dispatch({
-  //       type: ACTIONS.GET_CART,
-  //       payload: cart,
-  //     });
-  //   };
+    dispatch({
+      type: ACTIONS.GET_CART,
+      payload: cart,
+    });
+  };
 
-  //   const changeProductCount = (count, id) => {
-  //     let cart = JSON.parse(localStorage.getItem("cart"));
+  const changeProductCount = (count, id) => {
+    let cart = JSON.parse(localStorage.getItem("cart"));
 
-  //     cart.products = cart.products.map((product) => {
-  //       if (product.item.id === id) {
-  //         product.count = count;
-  //         product.subPrice = calcSubPrice(product);
-  //       }
-  //       return product;
-  //     });
-  //     cart.totalPrice = calcTotalPrice(cart.products);
-  //     localStorage.setItem("cart", JSON.stringify(cart));
+    cart.products = cart.products.map((product) => {
+      if (product.item.id === id) {
+        product.count = count;
+        product.subPrice = calcSubPrice(product);
+      }
+      return product;
+    });
+    cart.totalPrice = calcTotalPrice(cart.products);
+    localStorage.setItem("cart", JSON.stringify(cart));
 
-  //     dispatch({
-  //       type: ACTIONS.GET_CART,
-  //       payload: cart,
-  //     });
-  //   };
+    dispatch({
+      type: ACTIONS.GET_CART,
+      payload: cart,
+    });
+  };
 
-  //   function deleteCartProducts(id) {
-  //     let cart = JSON.parse(localStorage.getItem("cart"));
-  //     cart.products = cart.products.filter((elem) => elem.item.id !== id);
+  function deleteCartProducts(id) {
+    let cart = JSON.parse(localStorage.getItem("cart"));
+    cart.products = cart.products.filter((elem) => elem.item.id !== id);
 
-  //     cart.totalPrice = calcTotalPrice(cart.products);
-  //     localStorage.setItem("cart", JSON.stringify(cart));
+    cart.totalPrice = calcTotalPrice(cart.products);
+    localStorage.setItem("cart", JSON.stringify(cart));
 
-  //     getCart();
+    getCart();
 
-  //     dispatch({
-  //       type: ACTIONS.CHANGE_CART_LENGTH,
-  //       payload: cart.products.length,
-  //     });
-  //   }
+    dispatch({
+      type: ACTIONS.CHANGE_CART_LENGTH,
+      payload: cart.products.length,
+    });
+  }
 
-  //   function checkProductInCart(id) {
-  //     let cart = JSON.parse(localStorage.getItem("cart"));
+  function checkProductInCart(id) {
+    let cart = JSON.parse(localStorage.getItem("cart"));
 
-  //     if (cart) {
-  //       let newCart = cart.products.filter((elem) => elem.item.id == id);
+    if (cart) {
+      let newCart = cart.products.filter((elem) => elem.item.id == id);
 
-  //       return newCart.length > 0 ? true : false;
-  //     } else {
-  //       cart = {
-  //         product: [],
-  //         totalPrice: 0,
-  //       };
-  //     }
-  //   }
+      return newCart.length > 0 ? true : false;
+    } else {
+      cart = {
+        product: [],
+        totalPrice: 0,
+      };
+    }
+  }
+  console.log(state.productDetails);
 
   ////////////////////////////////////! cart end
 
@@ -282,12 +291,14 @@ const ProductContextProvider = ({ children }) => {
     background,
     setBackground,
 
-    // getCart,
-    // addProductToCart,
-    // changeProductCount,
-    // deleteCartProducts,
-    // checkProductInCart,
-    // cart: state.cart,
+    addComment,
+
+    getCart,
+    addProductToCart,
+    changeProductCount,
+    deleteCartProducts,
+    checkProductInCart,
+    cart: state.cart,
   };
   return (
     <productContext.Provider value={values}>{children}</productContext.Provider>

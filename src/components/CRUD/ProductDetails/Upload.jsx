@@ -1,7 +1,17 @@
-import React, { useState } from "react";
-import { useProducts } from "../../../../contexts/ProductContext";
+import React, { useState, useEffect } from "react";
+
+import { useParams } from "react-router-dom";
+import { useProducts } from "../../../contexts/ProductContext";
 
 const Upload = () => {
+  const { addChapter, chapter, products, getProductDetails, productDetails } =
+    useProducts();
+  const { id } = useParams();
+
+  useEffect(() => {
+    getProductDetails(id);
+  }, [id]);
+
   const { selectedFiles, setSelectedFiles } = useProducts();
   console.log(selectedFiles);
 
@@ -27,17 +37,17 @@ const Upload = () => {
       return <img src={photo} alt="" key={photo} />;
     });
   };
+  console.log();
 
   return (
     <div className="app">
-      <div className="heading">React Multiple Images Preview</div>
       <div>
         <input type="file" id="file" multiple onChange={handleImageChange} />
         <div className="label-holder">
-          <label htmlFor="file" className="label">
-            <i className="material-icons">add_a_photo</i>
-          </label>
-          <img src={selectedFiles}></img>
+          {chapter.map((elem) => (
+            // <img srcset={renderPhotos(elem.selectedFiles)} />
+            <div className="result">{renderPhotos(elem.selectedFiles)}</div>
+          ))}
         </div>
         <div className="result"></div>
       </div>
@@ -47,4 +57,4 @@ const Upload = () => {
 
 export default Upload;
 
-// {renderPhotos(selectedFiles)}
+//{renderPhotos(selectedFiles)}

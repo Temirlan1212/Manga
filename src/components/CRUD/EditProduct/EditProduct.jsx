@@ -16,6 +16,7 @@ const EditProduct = () => {
     price: 0,
     picture: "",
     picture2: "",
+    mainType: "",
     type: "",
   });
   console.log(product.name);
@@ -27,6 +28,8 @@ const EditProduct = () => {
   useEffect(() => {
     setProduct(productDetails);
   }, [productDetails]);
+
+  // console.log(productDetails, "inEdit");
 
   const handleInput = (e, product, setProduct) => {
     let obj = {
@@ -94,6 +97,15 @@ const EditProduct = () => {
               label="background"
               variant="outlined"
               name="picture2"
+              onChange={(e) => handleInput(e, product, setProduct)}
+            />
+            <TextField
+              value={product.mainType}
+              fullWidth
+              id="outlined-basic"
+              label="TYPE"
+              variant="outlined"
+              name="mainType"
               onChange={(e) => handleInput(e, product, setProduct)}
             />
             <TextField
