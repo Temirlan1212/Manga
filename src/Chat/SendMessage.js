@@ -7,9 +7,13 @@ const SendMessage = () => {
   const auth = fire.auth();
   const firestore = fire.firestore();
   const [msg, setMsg] = useState("");
+  console.log(msg);
 
   async function sendMessage(e) {
+    e.preventDefault();
     const { uid, photoURL } = auth.currentUser;
+
+    console.log(firebase.firestore.FieldValue.serverTimestamp());
 
     await firestore.collectionGroup("messages").add({
       text: msg,

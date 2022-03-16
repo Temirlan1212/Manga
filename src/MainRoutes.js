@@ -18,6 +18,7 @@ import SighIn from "./Chat/SighIn";
 import Chat from "./Chat/Chat";
 import ChatPage from "./pages/ChatPage";
 import FavoritiesPage from "./pages/FavoritiesPage";
+import Peyment from "./pages/Peyment";
 
 const MainRoutes = () => {
   const { user } = useAuth();
@@ -81,6 +82,11 @@ const MainRoutes = () => {
       link: "/chat",
       element: <ChatPage />,
       id: 13,
+    },
+    {
+      link: "/peyment",
+      element: <Peyment />,
+      id: 14,
     },
   ];
 

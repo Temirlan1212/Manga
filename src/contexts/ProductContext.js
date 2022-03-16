@@ -33,6 +33,8 @@ const reducer = (state = INIT_STATE, action) => {
       return { ...state, products: action.payload };
     case ACTIONS.GET_PRODUCT_DETAILS:
       return { ...state, productDetails: action.payload };
+    case "GET_DETAILS_OF_PRODUCT":
+      return { ...state, productDetails: action.payload };
     case ACTIONS.GET_PRODUCT_CHAPTER:
       return { ...state, chapter: action.payload };
     case ACTIONS.GET_CART:
@@ -260,6 +262,61 @@ const ProductContextProvider = ({ children }) => {
 
   ////////////////////////////////////! cart end
 
+  // details of product start
+
+  const getDetailsOfProduct = async (id) => {
+    const { data } = await axios(`${JSON_API_PRODUCTS}/${id}`);
+    dispatch({
+      type: "GET_DETAILS_OF_PRODUCT",
+      payload: data,
+    });
+  };
+
+  // details of product end
+  //likes start
+
+  async function addAndDeleteLikes(product) {
+    let likes = JSON.parse(localStorage.getItem("likes"));
+    if (!likes) {
+      likes = {
+        products: [],
+      };
+    }
+
+    let newProduct = {
+      product: product,
+    };
+
+    let newLikes = likes.products.filter(
+      (item) => item.product.id === product.id
+    );
+    if (newLikes.length > 0) {
+      likes.products = likes.products.filter(
+        (item) => item.product.id !== product.id
+      );
+      product.likes += 1;
+      await axios.patch(`${JSON_API_PRODUCTS}/${product.id}`, product);
+      getDetailsOfProduct(product.id);
+    } else {
+      likes.products.push(newProduct);
+      product.likes -= 1;
+      await axios.patch(`${JSON_API_PRODUCTS}/${product.id}`, product);
+      getDetailsOfProduct(product.id);
+    }
+    localStorage.setItem("likes", JSON.stringify(likes));
+  }
+
+  function checkProductInLikes(id) {
+    let likes = JSON.parse(localStorage.getItem("likes"));
+    if (!likes) {
+      likes = {
+        products: [],
+      };
+    }
+    let newLikes = likes.products.filter((item) => item.product.id === id);
+    return newLikes.length > 0 ? true : false;
+  }
+
   const [def, setDef] = useState(false);
 
   const values = {
@@ -299,6 +356,10 @@ const ProductContextProvider = ({ children }) => {
     deleteCartProducts,
     checkProductInCart,
     cart: state.cart,
+
+    addAndDeleteLikes,
+    checkProductInLikes,
+    getDetailsOfProduct,
   };
   return (
     <productContext.Provider value={values}>{children}</productContext.Provider>

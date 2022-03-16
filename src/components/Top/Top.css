@@ -1,0 +1,35 @@
+.Slider_Item {
+  max-width: 250px;
+  height: 270px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .Slider_Item {
+    height: 200px;
+  }
+}
+
+@media (max-width: 700px) {
+  .Slider_Item {
+    height: 180px;
+  }
+}
+
+@media (max-width: 600px) {
+  .Slider_Item {
+    height: 160px;
+  }
+}
+
+@media (max-width: 500px) {
+  .Slider_Item {
+    height: 130px;
+  }
+}
+
+@media (max-width: 500px) {
+  .Slider_Item {
+    height: 100px;
+  }
+}

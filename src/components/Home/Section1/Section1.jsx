@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useProducts } from "../../../contexts/ProductContext";
 import "./Style.css";
 import pic1 from "../../../assets/back2.avif";
@@ -10,8 +10,10 @@ const Section1 = () => {
   const [color, setColor] = useState("black");
 
   const { id } = useParams();
-  const { getProductDetails, share, def } = useProducts();
+  const { getProductDetails, share, def, products } = useProducts();
   console.log(share);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     getProductDetails(id);
@@ -95,6 +97,14 @@ const Section1 = () => {
                   black
                 </Button>
               </li>
+              {products.map((item) => (
+                <Button
+                  sx={{ color: "white" }}
+                  onClick={() => navigate(`/products/${item.id}`)}
+                >
+                  read
+                </Button>
+              ))}
             </ul>
           </div>
         </div>

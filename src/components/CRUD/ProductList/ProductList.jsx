@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useProducts } from "../../../contexts/ProductContext";
 import SideBar from "../../SideBar/SideBar";
+import Top from "../../Top/Top";
 import AddProduct from "../AddProduct/AddProduct";
 import MediaCard from "../AddProduct/AddProduct";
 import ProductCard from "../ProductCard/ProductCard";
@@ -73,6 +74,8 @@ const ProductList = ({ products }) => {
             </>
           )}
         </Grid>
+
+        <Top />
       </div>
     </>
   );

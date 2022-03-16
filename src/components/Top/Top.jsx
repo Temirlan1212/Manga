@@ -7,13 +7,13 @@ import { ADMIN } from "../../helpers/consts";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import { useProducts } from "../../contexts/ProductContext";
-import Item from "./Item2";
-import "./Slider2.css";
+import Item from "./Item3";
+import "./Top.css";
 
 const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const itemsToShow = 5;
 const getMid = () => Math.ceil(itemsToShow / 2) - 1; // 0 based
-function Slider2() {
+function Top() {
   const {
     user: { email },
   } = useAuth();
@@ -25,18 +25,26 @@ function Slider2() {
 
   const [prod, setProd] = useState(products);
 
+  console.log(prod);
+
   const onChange = (_, next) => {
     const mid = getMid();
     setMidItemIndex(mid + next.index);
   };
 
-  const handleRec = (id, type) => {
-    let newProduct = products.filter((item) => {
-      return item.id !== id;
-    });
+  const handleRec = (likes) => {
+    let newProduct = likes.map((elem) => elem.likes).sort((a, b) => a - b);
+    let obj = likes.length.splice(0, 5, newProduct);
 
-    setProd(newProduct);
+    setProd(obj);
   };
+
+  console.log(prod);
+  console.log(
+    products.map((elem) => {
+      return elem.likes;
+    })
+  );
 
   return (
     <Box
@@ -47,9 +55,7 @@ function Slider2() {
       }}
     >
       <center>
-        <Button
-          onClick={() => handleRec(productDetails.id, productDetails.mainType)}
-        >
+        <Button onClick={() => handleRec(products)}>
           show the reccomandation
         </Button>
       </center>
@@ -115,4 +121,4 @@ function Slider2() {
 
 const rootElement = document.getElementById("root");
 
-export default Slider2;
+export default Top;

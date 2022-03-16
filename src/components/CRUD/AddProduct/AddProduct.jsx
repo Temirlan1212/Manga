@@ -18,7 +18,7 @@ const AddProduct = () => {
     type: "",
     mainType: "",
     comments: [],
-    like: 0,
+    likes: 0,
   });
 
   const handleInp = (e) => {
